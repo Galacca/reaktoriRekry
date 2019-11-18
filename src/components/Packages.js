@@ -1,12 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PackageComponent from './Package';
 
-const Packages = (props) => (
-  <div>{Object.keys(props.packages)}</div>
-);
+// I would rather call packageData package instead, but it's a reserved word.
+
+const Packages = (props) => {
+  return (
+  <ul>
+    {props.packages.map((packageData) => (
+      <PackageComponent
+        key={packageData.Package}
+        packageName={packageData.Package}
+        handleClick={() => null}
+      />
+    ))}
+  </ul>
+  );
+};
 
 const mapStateToProps = (state) => ({
-  packages: state.packages,
+  packages: Object.values(state.packages),
 });
 
 const connectedPackages = connect(mapStateToProps)(Packages);

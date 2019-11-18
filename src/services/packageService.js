@@ -1,6 +1,6 @@
 const data = require('../data/status.real');
 
-const fetchPackageAsRawText = async () => {
+const fetchPackagesAsRawText = async () => {
   try {
     const response = await fetch(data);
     const responseText = await response.text();
@@ -10,4 +10,4 @@ const fetchPackageAsRawText = async () => {
   }
 };
 
-export default fetchPackageAsRawText;
+export default fetchPackagesAsRawText;

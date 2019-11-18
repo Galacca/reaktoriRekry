@@ -1,8 +1,8 @@
 
-import fetchPackageAsRawText from '../services/packageService';
+import fetchPackagesAsRawText from '../services/packageService';
 
 const initializePackages = () => async (dispatch) => {
-  const packageAsRawText = await fetchPackageAsRawText();
+  const packageAsRawText = await fetchPackagesAsRawText();
   dispatch({
     type: 'PARSE_RAW_TEXT',
     data: packageAsRawText,

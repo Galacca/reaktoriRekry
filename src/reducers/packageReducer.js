@@ -1,4 +1,4 @@
-const packageReducer = (state = [], action) => {
+const packageReducer = (state = {}, action) => {
   switch (action.type) {
     case 'PARSE_RAW_TEXT':
       // The parsing has to be done somewhere. A reducer seems like the most logical place.
@@ -34,7 +34,6 @@ const packageReducer = (state = [], action) => {
           }
         });
       });
-      console.log(packagesObject)
       return (packagesObject);
 
     default:
