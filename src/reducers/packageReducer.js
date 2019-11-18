@@ -34,7 +34,7 @@ const packageReducer = (state = {}, action) => {
           }
         });
       });
-      return (packagesObject);
+      return packagesObject;
 
     default:
       return state;
