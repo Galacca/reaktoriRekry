@@ -11,8 +11,8 @@ const PackageSingleView = (props) => {
     );
   }
   return (
-    // Make the links in homepage: field actual links
     Object.entries(props.package).map(([key, value]) => {
+      // Make the links in homepage: field actual links
       if (value.startsWith('http')) {
         value = <a href={value}>{value}</a>;
       }
