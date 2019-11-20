@@ -15,8 +15,8 @@ const App = (props) => {
   return (
     <div>
       <Router>
-      <Route exact path="/" component={Packages} />
-      <Route exact path="/packages/:packageName" render={({ match }) => <PackageSingleView packageToShow={match.params.packageName} />} />
+        <Route exact path="/" component={Packages} />
+        <Route exact path="/packages/:packageName" render={({ match }) => <PackageSingleView packageToShow={match.params.packageName} />} />
       </Router>
     </div>
   );

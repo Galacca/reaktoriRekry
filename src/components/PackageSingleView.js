@@ -11,15 +11,18 @@ const PackageSingleView = (props) => {
     );
   }
   return (
-    Object.entries(props.package).map(([key, value]) => {
+    <ul>
+      {Object.entries(props.package).map(([key, value]) => {
       // Make the links in homepage: field actual links
-      if (value.startsWith('http')) {
-        value = <a href={value}>{value}</a>;
-      }
-      // With all due respect to eslint this looks clearer.
-      // eslint-disable-next-line react/jsx-one-expression-per-line
-      return (<ul><li> {key} : {value} </li></ul>);
-    })
+        if (value.startsWith('http')) {
+          value = <a href={value}>{value}</a>;
+        }
+        // With all due respect to eslint this looks clearer.
+        // eslint-disable-next-line react/jsx-one-expression-per-line
+        return (<ul><li> {key}: {value} </li></ul>);
+      })}
+      <button type="button">Back</button>
+    </ul>
   );
 };
 
