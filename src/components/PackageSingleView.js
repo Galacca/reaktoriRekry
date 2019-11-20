@@ -1,26 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const PackageSingleView = (packageName) => {
+const PackageSingleView = (props) => {
   return (
     <div>
-      {packageName.Package}
-      {packageName.Status}
-      {packageName.Priority}
-      {packageName.Section}
-      {packageName['Installed-Size']}
-      {packageName.Maintainer}
-      {packageName.Architecture}
-      {packageName.Version}
-      {packageName.Description}
-      {packageName['Original-Maintainer']}
-      {packageName.Homepage}
-      {packageName.Depends}
-      {packageName.Conffiles}
-      {packageName['Multi-Arch']}
-      {packageName.Source}
-      {packageName.Essential}
+      {props.package.Package}
     </div>
   );
 };
 
-export default PackageSingleView;
+const mapStateToProps = (state, ownProps) => ({
+  package: state.packages[ownProps.packageName],
+});
+
+
+const connectedPackageSingleView = connect(mapStateToProps)(PackageSingleView);
+
+export default connectedPackageSingleView;

@@ -8,9 +8,10 @@ Keying with the package name should be fine since there should never be a duplic
 */
 
 const Packages = (props) => {
+  const packageArray = Object.values(props.packages);
   return (
     <ul>
-      {props.packages.map((packageData) => (
+      {packageArray.map((packageData) => (
         <PackageDetails
           key={packageData.Package}
           packageName={packageData.Package}
@@ -22,7 +23,7 @@ const Packages = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  packages: Object.values(state.packages),
+  packages: state.packages,
 });
 
 const connectedPackages = connect(mapStateToProps)(Packages);
