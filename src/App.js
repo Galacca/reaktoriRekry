@@ -7,6 +7,7 @@ import initializePackages from './actions/packageActions';
 import PackageSingleView from './components/PackageSingleView';
 
 const App = (props) => {
+
   useEffect(() => {
     props.initializePackages();
   }, []);
@@ -14,8 +15,8 @@ const App = (props) => {
   return (
     <div>
       <Router>
-        <Route exact path="/" render={() => <Packages />} />
-        <Route exact path="/packages/:packageName" render={({ match }) => <PackageSingleView packageName={match.params.packageName} />} />
+      <Route exact path="/" component={Packages} />
+      <Route exact path="/packages/:packageName" render={({ match }) => <PackageSingleView packageToShow={match.params.packageName} />} />
       </Router>
     </div>
   );

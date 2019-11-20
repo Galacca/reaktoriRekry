@@ -4,7 +4,6 @@ const packageReducer = (state = {}, action) => {
       // The parsing has to be done somewhere. A reducer seems like the most logical place.
       const packagesArray = action.data.split('\n\n');
       const packagesObject = {};
-
       packagesArray.forEach((packageString, index) => {
       // Seems like the easiest way to get the description is to parse it here.
         const start = packageString.indexOf('Description');
