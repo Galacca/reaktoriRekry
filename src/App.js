@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Packages from './components/Packages';
 import initializePackages from './actions/packageActions';
 import PackageSingleView from './components/PackageSingleView';
 
-const App = (props) => {
 
+const App = (props) => {
   useEffect(() => {
     props.initializePackages();
   }, []);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const PackageSingleView = (props) => {
   // This if statement prevents the app from crashing if the page is refreshed while on this view
@@ -19,9 +20,11 @@ const PackageSingleView = (props) => {
         }
         // With all due respect to eslint this looks clearer.
         // eslint-disable-next-line react/jsx-one-expression-per-line
-        return (<ul><li> {key}: {value} </li></ul>);
+        return (<li key={key}> {key}: {value} </li>);
       })}
-      <button type="button">Back</button>
+      <Link to="/">
+        <button type="button">Back</button>
+      </Link>
     </ul>
   );
 };
