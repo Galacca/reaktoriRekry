@@ -20,10 +20,15 @@ const packageReducer = (state = {}, action) => {
           // 0 index has key, 1 index has value. Add each key:value into package object
           // Check if value line starts with whitespace, if it does it means its part
           // of description and is not needed. and should be casted aside
-          if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
-            packageObject[split[0]] = split[1];
-          }
 
+          if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
+            if (split[0] === 'Depends') {
+              const splitDepends = split[1].split(',');
+              packageObject[split[0]] = splitDepends;
+            } else {
+              packageObject[split[0]] = split[1];
+            }
+          }
           // Simple check if Package (name) has been set, then set Description from
           // the earlier parsing value. This removes issue where Description was set
           // for an undefined key
