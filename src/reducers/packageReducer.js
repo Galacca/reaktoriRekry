@@ -23,7 +23,7 @@ const packageReducer = (state = {}, action) => {
 
           if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
             if (split[0] === 'Depends') {
-              const splitDepends = split[1].split(',');
+              const splitDepends = split[1].split(', ');
               packageObject[split[0]] = splitDepends;
             } else {
               packageObject[split[0]] = split[1];
@@ -45,4 +45,4 @@ const packageReducer = (state = {}, action) => {
   }
 };
 
-export default packageReducer
+export default packageReducer;

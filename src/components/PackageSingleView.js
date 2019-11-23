@@ -15,22 +15,23 @@ const PackageSingleView = (props) => {
 
   return (
     <ul>
-      {Object.entries(props.package).map(([key, value]) => {
+      {Object.keys(props.package).map(key => {
       // Make the links in homepage: field actual links
-        if (key.startsWith('Homepage') && value.startsWith('http')) {
-          value = <a href={value}>{value}</a>;
+        if (key.startsWith('Homepage') && props.package[key].startsWith('http')) {
+          props.package[key] = <a href={props.package[key]}>{props.package[key]}</a>;
         }
-        // Make the navigation from depends menu possible. 
+        // Make the navigation from depends menu possible.
         if (key === 'Depends') {
           return (
             <DependsView
-              dependsValue={value}
+              dependsValue={props.package[key]}
+              packageNames={props.packageNames}
             />
           );
         }
         // With all due respect to eslint this looks clearer.
         // eslint-disable-next-line react/jsx-one-expression-per-line
-        return (<li key={key}> {key}: {value}</li>);
+        return (<li key={key}> {key}: {props.package[key]}</li>);
       })}
       <Link to="/">
         <button type="button">Back to package list</button>
@@ -41,6 +42,7 @@ const PackageSingleView = (props) => {
 
 const mapStateToProps = (state, ownProps) => ({
   package: state.packages[ownProps.packageToShow],
+  packageNames: Object.values(state.packages).map(p => p.Package),
 });
 
 
