@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import DependsView from './DependsView';
 
 const PackageSingleView = (props) => {
   // This if statement prevents the app from crashing if the page is refreshed while on this view
@@ -19,17 +20,13 @@ const PackageSingleView = (props) => {
         if (key.startsWith('Homepage') && value.startsWith('http')) {
           value = <a href={value}>{value}</a>;
         }
-        // Make the navigation from depends menu possible. This parsing just has to be done here instead of the reducer
-        // I could do it in the reducer, but with the loss of version number data.
+        // Make the navigation from depends menu possible. 
         if (key === 'Depends') {
-          return value.map(v => {
-            if (v.endsWith(')')) {
-              const split = v.split(' (');
-              v = <a href={split[0]}>{v}, </a>;
-            }
-            v = <a href={v}>{v}, </a>;
-            return v;
-          });
+          return (
+            <DependsView
+              dependsValue={value}
+            />
+          );
         }
         // With all due respect to eslint this looks clearer.
         // eslint-disable-next-line react/jsx-one-expression-per-line
@@ -49,4 +46,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 const connectedPackageSingleView = connect(mapStateToProps)(PackageSingleView);
 
-export default connectedPackageSingleView;
+export default connectedPackageSingleView
+;

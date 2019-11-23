@@ -15,7 +15,6 @@ const Packages = (props) => {
         <PackageDetails
           key={packageData.Package}
           packageName={packageData.Package}
-          handleClick={() => null}
         />
       ))}
     </ul>

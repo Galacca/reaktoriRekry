@@ -45,4 +45,4 @@ const packageReducer = (state = {}, action) => {
   }
 };
 
-export default packageReducer;
+export default packageReducer
