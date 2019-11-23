@@ -17,9 +17,12 @@ const packageReducer = (state = {}, action) => {
         keyValueArray.forEach((keyValue) => {
         // Split "key: value" string into array.
           const split = keyValue.split(': ');
-          // 0 index has key, 1 index has value. Add each key:value into package object
-          // Check if value line starts with whitespace, if it does it means its part
-          // of description and is not needed. and should be casted aside
+          /* 0 index has key, 1 index has value. Add each key:value into package object
+           Check if value line starts with whitespace, if it does it means its part
+           of description and is not needed. and should be casted aside. Also turn
+           the Depends fields into a more manageable format since we have to work a lot
+           on them.
+          */
 
           if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
             if (split[0] === 'Depends') {

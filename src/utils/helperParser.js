@@ -1,6 +1,7 @@
 /*
- A simple helper function that helps parse url's from depends fields
+ A simple helper function that helps getting usable url's from depends fields
  that have a version number in them.
+ And another one to add the pipes back since they had to be parsed.
 */
 
 const stripVersionNumbers = (value) => {
@@ -11,20 +12,24 @@ const stripVersionNumbers = (value) => {
   return (value);
 };
 
-const matchDependsToPackages = (value, packageNames) => {
-  console.log("value " +value)
-  const match = packageNames.find((e) => e === value);
-  console.log("match " +match);
-  return match;
-};
-
-const getPackageName = (value, packageNames) => {
-  if (value.includes('|')) {
-    const pipesToSplit = value.split(' | ').map((d) => stripVersionNumbers(d));
-    console.log("mapped pipestosplit " + pipesToSplit.map(p => p))
-    return matchDependsToPackages(pipesToSplit.map(p => p), packageNames);
+const getPackageNames = (dependency) => {
+  if (dependency.includes('|')) {
+    return dependency.split(' | ').map((d) => ({ withVersion: d, withoutVersion: stripVersionNumbers(d) }));
   }
-  return matchDependsToPackages(stripVersionNumbers(value), packageNames);
+  return [{ withVersion: dependency, withoutVersion: stripVersionNumbers(dependency) }];
 };
 
-export default getPackageName;
+export const addPipes = (components) => {
+  return components.reduce((accumulator, value, index) => {
+    if (index < components.length - 1) {
+      accumulator.push(value);
+      accumulator.push(' | ');
+      return accumulator;
+    } else {
+      accumulator.push(value);
+      return accumulator;
+    }
+  }, []);
+};
+
+export default getPackageNames;

@@ -15,17 +15,18 @@ const PackageSingleView = (props) => {
 
   return (
     <ul>
-      {Object.keys(props.package).map(key => {
+      {Object.keys(props.package).map((key) => {
       // Make the links in homepage: field actual links
         if (key.startsWith('Homepage') && props.package[key].startsWith('http')) {
-          props.package[key] = <a href={props.package[key]}>{props.package[key]}</a>;
+          return (<li key={key}> {key}: <a href={props.package[key]}>{props.package[key]}</a></li>);
         }
         // Make the navigation from depends menu possible.
         if (key === 'Depends') {
           return (
             <DependsView
+              key={props.package[key]}
               dependsValue={props.package[key]}
-              packageNames={props.packageNames}
+              packages={props.packages}
             />
           );
         }
@@ -42,7 +43,7 @@ const PackageSingleView = (props) => {
 
 const mapStateToProps = (state, ownProps) => ({
   package: state.packages[ownProps.packageToShow],
-  packageNames: Object.values(state.packages).map(p => p.Package),
+  packages: state.packages,
 });
 
 
