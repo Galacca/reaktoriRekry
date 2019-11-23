@@ -1,68 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#React Redux frontend
 
-## Available Scripts
+My take on https://www.reaktor.com/junior-dev-assignment/
 
-In the project directory, you can run:
+I decided to use React and Redux to do my best at emulating an actual web application. This did add quite a few libraries to my project.
+However when it comes to any sort of parsing of data it is all done in javascript and only javascript. No external libraries were used in that.
 
-### `npm start`
+Why did I decide to use a second parser instead of making one "proper" one?
+The data structure would have gotten a bit too crazy in my opinion had I attempted to create for example a nested object that attempted to deal with all the pipes and version removals from the Depends fields.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Due to personal reasons I ran a bit short on time on this one. Commenting is not great and there's atleast two bugs. The app does however meet all the requirements of the given assignment.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#Known Bugs
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+No proper handling of invalid urls such as packages/asdafghads/. You should not however end in an invalid url by navigating the app normally.
+Description fields sometimes swallow other fields such as Homepage. The parser needs to be better.
