@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DependsView from './DependsView';
+import DescriptionView from './DescriptionView';
 
 const PackageSingleView = (props) => {
   // This if statement prevents the app from crashing if the page is refreshed while on this view
@@ -27,6 +28,14 @@ const PackageSingleView = (props) => {
               key={props.package[key]}
               dependsValue={props.package[key]}
               packages={props.packages}
+            />
+          );
+        }
+        if (key === 'Description') {
+          return (
+            <DescriptionView
+              key={props.package[key]}
+              value={props.package[key]}
             />
           );
         }

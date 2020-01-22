@@ -19,7 +19,7 @@ const packageReducer = (state = {}, action) => {
         // Dont stop at the first match (g)
         const regex = /^\S.+/mg;
         // Anything caught by this is not a part of the description. Remove it.
-        const desc = descFirstSlice.replace(regex, '');
+        const desc = descFirstSlice.replace(regex, '').trim();
         // Split long single string of package info into strings with key and value.
         const keyValueArray = packageString.split('\n');
         const packageObject = {};
