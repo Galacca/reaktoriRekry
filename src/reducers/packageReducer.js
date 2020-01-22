@@ -3,13 +3,23 @@ const packageReducer = (state = {}, action) => {
     case 'PARSE_RAW_TEXT':
       // The parsing has to be done somewhere. A reducer seems like the most logical place.
       const packagesArray = action.data.split('\n\n');
+      packagesArray.sort();
       const packagesObject = {};
       packagesArray.forEach((packageString, index) => {
       // Seems like the easiest way to get the description is to parse it here.
-        const start = packageString.indexOf('Description');
-        const end = packageString.indexOf('Original-Maintainer');
-        const desc = packageString.slice(start, end).replace('Description: ', '');
-
+        const start = packageString.indexOf('Description:');
+        // Let it run to the end and snatch everything even if it doesnt belong in the description
+        const end = packageString.length;
+        // In order to save anything following the : in Description:
+        // we replace the Description: with a whitespace.
+        const descFirstSlice = packageString.slice(start, end).replace('Description:', '');
+        // regex: If it does not start with a whitespace (^S)
+        // Keep going to the end of the line (.+)
+        // For every line individually (m)
+        // Dont stop at the first match (g)
+        const regex = /^\S.+/mg;
+        // Anything caught by this is not a part of the description. Remove it.
+        const desc = descFirstSlice.replace(regex, '');
         // Split long single string of package info into strings with key and value.
         const keyValueArray = packageString.split('\n');
         const packageObject = {};
