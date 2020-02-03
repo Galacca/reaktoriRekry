@@ -8,7 +8,6 @@ Keying with the package name should be fine since there should never be a duplic
 */
 
 const Packages = (props) => {
-  console.log(props.packages);
   const packageArray = Object.values(props.packages);
 
   return (

@@ -15,10 +15,10 @@ const packageReducer = (state = {}, action) => {
         const descFirstSlice = packageString.slice(start, end).replace('Description:', '');
         // regex: If it does not start with a whitespace (^S)
         // Keep going to the end of the line (.+)
-        // For every line individually (m)
-        // Dont stop at the first match (g)
+        // Flag: For every line individually (m)
+        // Flag: Dont stop at the first match (g)
         const regex = /^\S.+/mg;
-        // Anything caught by this is not a part of the description. Remove it.
+        // Anything caught by this is not a part of the description. Remove it. Trim the resulting whitespaces.
         const desc = descFirstSlice.replace(regex, '').trim();
         // Split long single string of package info into strings with key and value.
         const keyValueArray = packageString.split('\n');
@@ -29,15 +29,20 @@ const packageReducer = (state = {}, action) => {
           const split = keyValue.split(': ');
           /* 0 index has key, 1 index has value. Add each key:value into package object
            Check if value line starts with whitespace, if it does it means its part
-           of description and is not needed. and should be casted aside. Also turn
-           the Depends fields into a more manageable format since we have to work a lot
-           on them.
+           of description and is not needed. and should be casted aside.
           */
-
+          // Purposefully regex it so that we get a whitespace at the start if we found a pipe
+          const pipeOrCommaRegEx = /\||, /g;
           if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
             if (split[0] === 'Depends') {
-              const splitDepends = split[1].split(', ');
-              packageObject[split[0]] = splitDepends;
+              if (!split[1].includes('|')) {
+                packageObject[split[0]] = split[1].split(', ');
+              } else {
+                const splitWithBoth = split[1].split(pipeOrCommaRegEx);
+                // If there is a whitespace at the start there used to be a pipe so put it back
+                const withPipes = splitWithBoth.map((swb) => swb.replace(/^\s/, '| ').trim().concat(' '));
+                packageObject[split[0]] = withPipes;
+              }
             } else {
               packageObject[split[0]] = split[1];
             }
