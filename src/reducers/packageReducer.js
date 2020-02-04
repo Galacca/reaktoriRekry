@@ -32,6 +32,9 @@ const packageReducer = (state = {}, action) => {
            of description and is not needed. and should be casted aside.
           */
           // Purposefully regex it so that we get a whitespace at the start if we found a pipe
+          // Look for a pipe (escape syntax) \|
+          // OR (pipe without escape syntax) a comma |,
+          // Flag: Dont stop at the first match (g)
           const pipeOrCommaRegEx = /\||, /g;
           if (split[0] && split[1] && split[1].charAt(0) !== ' ') {
             if (split[0] === 'Depends') {

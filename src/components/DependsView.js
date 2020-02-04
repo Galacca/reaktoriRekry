@@ -15,14 +15,4 @@ Depends:
   );
 };
 
-export const addPipes = (components) => components.reduce((accumulator, value, index) => {
-  if (index < components.length - 1) {
-    accumulator.push(value);
-    accumulator.push(' | ');
-    return accumulator;
-  }
-  accumulator.push(value);
-  return accumulator;
-}, []);
-
 export default DependsView;
