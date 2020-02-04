@@ -10,10 +10,11 @@ const stripVersionNumbers = (value) => {
 };
 
 const formatPackageNames = (dependency) => {
-  if (dependency.includes('|')) {
-    return stripVersionNumbers(dependency.replace('| ', ''));
+  const trimmedDeps = dependency.trim();
+  if (trimmedDeps.includes('|')) {
+    return stripVersionNumbers(trimmedDeps.replace('| ', ''));
   }
-  return stripVersionNumbers(dependency);
+  return stripVersionNumbers(trimmedDeps);
 };
 
 export default formatPackageNames;
