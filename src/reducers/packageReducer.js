@@ -43,7 +43,7 @@ const packageReducer = (state = {}, action) => {
               } else {
                 const splitWithBoth = split[1].split(pipeOrCommaRegEx);
                 // If there is a whitespace at the start there used to be a pipe so put it back
-                const withPipes = splitWithBoth.map((swb) => swb.replace(/^\s/, '| ').trim().concat(' '));
+                const withPipes = splitWithBoth.map((swb) => swb.replace(/^\s/, '| '));
                 packageObject[split[0]] = withPipes;
               }
             } else {
