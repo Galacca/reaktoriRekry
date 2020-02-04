@@ -39,7 +39,6 @@ const PackageSingleView = (props) => {
             />
           );
         }
-        // Hide the linkableDepends field that we dont want to display
         // With all due respect to eslint this looks clearer.
         // eslint-disable-next-line react/jsx-one-expression-per-line
         return (<li key={key}> {key}: {props.package[key]}</li>);
